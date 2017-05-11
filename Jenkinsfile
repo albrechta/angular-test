@@ -1,11 +1,13 @@
 pipeline {
     agent any
     stages {
-        stage('Example') {
-            steps { 
-                echo 'Hello World'
+        stage('Build') {
+            agent { docker 'openjdk:8-jre' } 
+            steps {
+                sh ./gradlew build
             }
         }
     }
 }
+
 
