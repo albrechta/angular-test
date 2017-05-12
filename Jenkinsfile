@@ -11,13 +11,13 @@ pipeline {
         stage('Build') {
             agent { docker 'openjdk:8-jdk' }
             steps {
-                sh "./gradlew build -xtest --no-daemon"
+                sh "./gradlew build -xtest -PnodeInstall --no-daemon"
             }
         }
           
         stage('Test: Backend') {
             steps {
-                sh "./gradlew test --no-daemon"
+                sh "./gradlew test -PnodeInstall --no-daemon"
                 junit "**/build/**/TEST-*.xml"
             }
         }
